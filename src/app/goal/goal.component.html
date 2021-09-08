@@ -1,0 +1,13 @@
+<div>
+    <h1>My Goals</h1>
+    <ul *ngFor='let goal of goals'>
+      <li>
+        {{goal.name}}
+        {{goal.id}}
+        <!-- [goal] is the property in goal-details with the @Input() decorator ie goal!:Goal;-->
+        <app-goal-details [goal]='goal'></app-goal-details>
+        <!-- 'goal is the property in parent component.' -->
+      </li>
+    </ul>
+    <!-- <p *ngIf='goals.length>10'>Wacha mchezo {{goals.length}}</p> -->
+  </div>

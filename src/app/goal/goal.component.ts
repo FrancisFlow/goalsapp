@@ -8,12 +8,22 @@ import { Goal } from '../goal';
 })
 export class GoalComponent implements OnInit {
   goals: Goal[] = [
-  {id:1, name:"This is the first thing", details:'Harvard business Review' },
-  {id:2, name:"This is the second thing", details:'Money is not a thing' },
-  {id:3, name:"This is the third thing", details:'Bless me father'},
-  {id:4, name:"That came to mind", details:'Great is thy will' },
-  {id:5, name:"This is the last thing to fill the list", details:'Defeat, Khalil Ghibran' }
+  new Goal (1, 'This is the first thing', 'Harvard business Review'),
+  new Goal (2, 'This is the second thing','Money is not a thing' ),
+  new Goal (3, 'This is the third thing', 'Bless me father'),
+  new Goal (4, "That came to mind",'Great is thy will' ),
+  new Goal (5, 'This is the last thing to fill the list', 'Defeat, Khalil Ghibran')
 ];
+
+toggleDetails(index:any) {
+  this.goals[index].showDescription = !this.goals[index].showDescription;
+}
+
+completeGoal(isComplete:boolean, index:number) {
+  if (isComplete) {
+    this.goals.splice(index, 1)
+  }
+}
 
   constructor() { }
 

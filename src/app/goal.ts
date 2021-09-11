@@ -1,5 +1,9 @@
 export class Goal {
-    id!: number;
-    name!: string;
-    details!: string;
+    showDescription:Boolean;
+
+    constructor ( public id: number,  public name: string, public details: string)
+    {
+        this.showDescription=false;
+
+    }
 }

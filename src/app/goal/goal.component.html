@@ -1,4 +1,4 @@
-<div>
+<div class="container" >
     <h1>My Goals</h1>
     <ul>
       <div *ngFor='let goal of goals; let i = index'>
@@ -10,6 +10,9 @@
         <!-- [goal] is the property in goal-details with the @Input() decorator ie goal!:Goal;-->
         <app-goal-details *ngIf='goal.showDescription' (isComplete)='deleteGoal($event, i)' [goal]='goal'></app-goal-details>
         <!-- 'goal is the property in parent component.' -->
+      </div>
+      <div class="col-md-6">
+        <app-goal-form></app-goal-form>
       </div>
     </ul>
     <p *ngIf='goals.length>10'>Wacha mchezo, goals {{goals.length}}</p>

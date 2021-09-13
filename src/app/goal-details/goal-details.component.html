@@ -1,4 +1,7 @@
 <p>
     {{goal.details}}
 </p>
-<button (click)='goalComplete(true)' >Axe me</button>
+<p> 
+   The number of days before completions is {{goal.completionDate | customDate }}
+</p>
+<button (click)='deleteGoal(true)' class="btn btn-outline-danger" >Axe me</button>

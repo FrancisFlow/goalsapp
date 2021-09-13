@@ -4,11 +4,11 @@
       <div *ngFor='let goal of goals; let i = index'>
       <li appStrikethrough>
         {{goal.name}}
-        <!-- {{goal.id}} -->
+        {{goal.id}}
       </li>
       <button (click)=toggleDetails(i) >Show Details</button>
         <!-- [goal] is the property in goal-details with the @Input() decorator ie goal!:Goal;-->
-        <app-goal-details *ngIf='goal.showDescription' (isComplete)='completeGoal($event, i)' [goal]='goal'></app-goal-details>
+        <app-goal-details *ngIf='goal.showDescription' (isComplete)='deleteGoal($event, i)' [goal]='goal'></app-goal-details>
         <!-- 'goal is the property in parent component.' -->
       </div>
     </ul>

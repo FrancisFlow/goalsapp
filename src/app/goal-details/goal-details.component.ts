@@ -11,7 +11,7 @@ export class GoalDetailsComponent implements OnInit {
   // event emitter communicating with parent component. Output () means take care of this mom
   @Output() isComplete = new EventEmitter<boolean>();
 
-  goalComplete(complete: boolean) {
+  deleteGoal(complete: boolean) {
     this.isComplete.emit(complete);
   }
 

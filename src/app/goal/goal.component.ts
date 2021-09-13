@@ -15,6 +15,13 @@ export class GoalComponent implements OnInit {
   new Goal (5, 'This is the last thing to fill the list', 'Defeat, Khalil Ghibran', new Date(2021, 2, 4))
 ];
 
+addNewGoal(goal:Goal) {
+  let goalLength = this.goals.length;
+  goal.id = goalLength+1;
+  goal.completionDate =new Date(goal.completionDate);
+  this.goals.push(goal); 
+}
+
 toggleDetails(index:any) {
   this.goals[index].showDescription = !this.goals[index].showDescription;
 }

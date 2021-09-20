@@ -1,5 +1,6 @@
 <div class="container" >
-    <h1>My Goals</h1>
+   <ng-progress></ng-progress>
+  <h1>My Goals</h1>
     <ul>
       <div *ngFor='let goal of goals; let i = index'>
       <li appStrikethrough>
@@ -11,6 +12,16 @@
         <app-goal-details *ngIf='goal.showDescription' (isComplete)='deleteGoal($event, i)' [goal]='goal'></app-goal-details>
         <!-- 'goal is the property in parent component.' -->
       </div>
+      <div>
+        <p *ngIf='goals.length > 5'>You have too many goals</p>
+        <div class="row">
+          <blockquote class="blockquote text-center">
+            <p class="mb-0">{{quote.quote}}</p>
+            <footer class="blockquote-footer"><cite>{{quote.author}}</cite></footer>
+          </blockquote>
+        </div>
+        </div>
+      
       <div class="col-md-6">
         <app-goal-form (addGoal)="addNewGoal($event)"></app-goal-form>
       </div>

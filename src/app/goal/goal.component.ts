@@ -1,19 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Goal } from '../goal';
-
+import { GoalService } from '../goal-service/goal.service';
+import { AlertService } from '../alert-service/goal.service';
+import { HttpClient } from '@angular/common/http';
+import { Quote } from '../quote-class/quote';
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
   styleUrls: ['./goal.component.css']
 })
 export class GoalComponent implements OnInit {
-  goals: Goal[] = [
-  new Goal (1, 'This is the first thing', 'Harvard business Review', new Date(2021, 4, 5)),
-  new Goal (2, 'This is the second thing','Money is not a thing', new Date(2021, 3, 5)),
-  new Goal (3, 'This is the third thing', 'Bless me father', new Date(2022, 4, 1)),
-  new Goal (4, "That came to mind",'Great is thy will', new Date() ),
-  new Goal (5, 'This is the last thing to fill the list', 'Defeat, Khalil Ghibran', new Date(2021, 2, 4))
-];
+
+  goals: Goal[];
+  alertService: AlertService;
+  quote!:Quote;
+
+constructor(goalService:GoalService, alertService:AlertService, private http:HttpClient) {
+   this.goals = goalService.getGoals();
+   this.alertService= alertService;
+  }
+
+
+
+
+
+
 
 addNewGoal(goal:Goal) {
   let goalLength = this.goals.length;
@@ -31,13 +42,22 @@ deleteGoal(isComplete:boolean, index:number) {
     let toDelete = confirm(`Are you sure you want to delete ${this.goals[index].name}?`)
      if(toDelete) { 
        this.goals.splice(index, 1);
+       this.alertService.alertMe("Hey, the user deleted this")
      }
     }
   }
 
-  constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    interface ApiResponse {
+      author: string;
+      quote: string;
+    }
+    this.http.get<ApiResponse>("http://quotes.stormconsultancy.co.uk/random.json").
+    subscribe(data=>{this.quote= new Quote(data.author, data.quote)
+  }, err=>{
+    this.quote = new Quote("Winston Churchill", "Never, never give up")
+    console.log("An error occurred")
+  })
   }
-
 }
